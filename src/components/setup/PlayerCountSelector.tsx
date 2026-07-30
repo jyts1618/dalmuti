@@ -10,17 +10,17 @@ export function PlayerCountSelector({ value, onChange }: PlayerCountSelectorProp
 
   return (
     <div className="space-y-3">
-      <label htmlFor="player-count" className="block text-2xl font-semibold text-emerald-50">
+      <label htmlFor="player-count" className="block text-sm text-emerald-50">
         현재 참여 인원
       </label>
-      <div className="flex min-h-32 items-center justify-center rounded-[28px] border-2 border-emerald-50/90 bg-white/5 px-4 py-7">
-        <div className="grid w-full max-w-xs grid-cols-[56px_minmax(0,1fr)_56px] items-center gap-3 sm:max-w-sm sm:grid-cols-[64px_minmax(0,1fr)_64px] sm:gap-5">
+      <div className="flex min-h-32 items-center justify-center rounded-md border border-amber-200/30 bg-white/5 px-4 py-7">
+        <div className="grid w-full max-w-xs grid-cols-[52px_minmax(0,1fr)_52px] items-center gap-3 sm:max-w-sm sm:grid-cols-[56px_minmax(0,1fr)_56px] sm:gap-4">
           <button
             type="button"
             aria-label="참여 인원 감소"
             onClick={() => setClamped(value - 1)}
             disabled={value <= 4}
-            className="h-14 rounded-xl border-2 border-emerald-50/90 text-2xl font-semibold text-emerald-50 disabled:cursor-not-allowed disabled:opacity-35 sm:h-16"
+            className="h-12 rounded border border-amber-200/40 text-xl font-semibold text-amber-100 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40 sm:h-14"
           >
             -
           </button>
@@ -32,14 +32,14 @@ export function PlayerCountSelector({ value, onChange }: PlayerCountSelectorProp
             max={8}
             value={value}
             onChange={(event) => setClamped(Number(event.target.value))}
-            className="h-14 min-w-0 rounded-xl border-2 border-emerald-50/90 bg-transparent px-3 text-center text-3xl font-semibold text-emerald-50 outline-none sm:h-16"
+            className="h-12 min-w-0 rounded border border-amber-200/40 bg-emerald-950 px-3 text-center text-2xl font-semibold text-amber-100 outline-none focus:border-amber-200 sm:h-14"
           />
           <button
             type="button"
             aria-label="참여 인원 증가"
             onClick={() => setClamped(value + 1)}
             disabled={value >= 8}
-            className="h-14 rounded-xl border-2 border-emerald-50/90 text-2xl font-semibold text-emerald-50 disabled:cursor-not-allowed disabled:opacity-35 sm:h-16"
+            className="h-12 rounded border border-amber-200/40 text-xl font-semibold text-amber-100 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40 sm:h-14"
           >
             +
           </button>
