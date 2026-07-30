@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #061714;
+  font-family:
+    Arial,
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #f8d56b;
+  outline-offset: 2px;
+}
+
+.text-ivory {
+  color: #fff8e5;
+}
+
+.card-size {
+  width: 78px;
+  aspect-ratio: 744 / 1038;
+}
+
+@media (min-width: 768px) {
+  .card-size {
+    width: 86px;
+  }
+}
