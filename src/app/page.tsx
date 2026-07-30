@@ -16,6 +16,13 @@ import { ROLE_LABELS } from "@/game/roleAssignment";
 import { useAiTurn } from "@/hooks/useAiTurn";
 import { useGame } from "@/hooks/useGame";
 import { useSavedGameSnapshot } from "@/hooks/useLocalStorage";
+import type { AiDifficulty } from "@/types/game";
+
+const AI_DIFFICULTY_LABELS: Record<AiDifficulty, string> = {
+  easy: "쉬움",
+  normal: "보통",
+  hard: "어려움",
+};
 
 function RulesModal({ onClose }: { onClose: () => void }) {
   return (
@@ -39,13 +46,14 @@ function StartScreen({
   hasSavedGame,
   onShowRules,
 }: {
-  onCreate: (playerCount: number, humanName: string) => void;
+  onCreate: (playerCount: number, humanName: string, aiDifficulty: AiDifficulty) => void;
   onContinue: () => void;
   hasSavedGame: boolean;
   onShowRules: () => void;
 }) {
   const [playerCount, setPlayerCount] = useState(5);
   const [humanName, setHumanName] = useState("나");
+  const [aiDifficulty, setAiDifficulty] = useState<AiDifficulty>("normal");
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,#153f35,#061714_70%)] px-4 py-8 text-emerald-50">
@@ -60,7 +68,7 @@ function StartScreen({
             <button
               type="button"
               aria-label="새 게임 설정으로 시작"
-              onClick={() => onCreate(playerCount, humanName)}
+              onClick={() => onCreate(playerCount, humanName, aiDifficulty)}
               className="rounded bg-amber-300 px-5 py-3 font-semibold text-emerald-950 hover:bg-amber-200"
             >
               새 게임
@@ -84,10 +92,36 @@ function StartScreen({
           <div className="mt-5">
             <PlayerCountSelector value={playerCount} onChange={setPlayerCount} />
           </div>
+          <fieldset className="mt-5">
+            <legend className="text-sm text-emerald-50">AI 난이도</legend>
+            <div className="mt-2 grid grid-cols-3 gap-2 rounded-md border border-amber-200/30 bg-white/5 p-1">
+              {(Object.keys(AI_DIFFICULTY_LABELS) as AiDifficulty[]).map((difficulty) => (
+                <button
+                  key={difficulty}
+                  type="button"
+                  aria-label={`AI 난이도 ${AI_DIFFICULTY_LABELS[difficulty]}`}
+                  aria-pressed={aiDifficulty === difficulty}
+                  onClick={() => setAiDifficulty(difficulty)}
+                  className={`rounded px-3 py-2 text-sm font-semibold ${
+                    aiDifficulty === difficulty ? "bg-amber-300 text-emerald-950" : "text-emerald-100 hover:bg-white/10"
+                  }`}
+                >
+                  {AI_DIFFICULTY_LABELS[difficulty]}
+                </button>
+              ))}
+            </div>
+            <p className="mt-2 text-xs leading-5 text-emerald-100">
+              {aiDifficulty === "easy"
+                ? "AI가 조커와 강한 카드를 더 쉽게 사용합니다."
+                : aiDifficulty === "hard"
+                  ? "AI가 조커와 세트를 더 아끼고 마무리 기회를 우선합니다."
+                  : "기존과 같은 균형 잡힌 기본 전략입니다."}
+            </p>
+          </fieldset>
           <button
             type="button"
             aria-label="게임 시작"
-            onClick={() => onCreate(playerCount, humanName)}
+            onClick={() => onCreate(playerCount, humanName, aiDifficulty)}
             className="mt-6 w-full rounded bg-amber-300 px-5 py-3 font-semibold text-emerald-950 hover:bg-amber-200"
           >
             게임 시작
@@ -217,9 +251,9 @@ export default function Home() {
 
   useAiTurn(state, dispatch);
 
-  function startNewGame(playerCount = 5, humanName = "나") {
+  function startNewGame(playerCount = 5, humanName = "나", aiDifficulty: AiDifficulty = "normal") {
     clearSavedGame();
-    dispatch({ type: "CREATE_GAME", payload: { playerCount, humanName } });
+    dispatch({ type: "CREATE_GAME", payload: { playerCount, humanName, aiDifficulty } });
   }
 
   function resetToStart() {

@@ -17,6 +17,7 @@ export type GamePhase =
   | "gameEnd";
 
 export type RevolutionType = "none" | "normal" | "greater";
+export type AiDifficulty = "easy" | "normal" | "hard";
 
 export type Card = {
   id: string;
@@ -65,6 +66,7 @@ export type RoundHistoryEntry = {
 export type GameState = {
   version: "1.0.0";
   phase: GamePhase;
+  aiDifficulty: AiDifficulty;
   roundNumber: number;
   players: Player[];
   currentPlayerId: string | null;
@@ -90,7 +92,7 @@ export type SavedGame = {
 export type GameAction =
   | {
       type: "CREATE_GAME";
-      payload: { playerCount: number; humanName: string };
+      payload: { playerCount: number; humanName: string; aiDifficulty: AiDifficulty };
     }
   | { type: "DRAW_INITIAL_ROLES" }
   | { type: "DEAL_CARDS" }

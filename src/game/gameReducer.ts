@@ -16,6 +16,7 @@ const AI_NAMES = ["아서", "엘레나", "로빈", "마르코", "소피아", "�
 export const initialGameState: GameState = {
   version: "1.0.0",
   phase: "setup",
+  aiDifficulty: "normal",
   roundNumber: 1,
   players: [],
   currentPlayerId: null,
@@ -216,9 +217,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
           {
             ...initialGameState,
             phase: "drawingRoles",
+            aiDifficulty: action.payload.aiDifficulty,
             players: createPlayers(playerCount, action.payload.humanName),
           },
-          `총 ${playerCount}명이 참여하는 새 게임을 만들었습니다.`,
+          `총 ${playerCount}명이 참여하는 새 게임을 만들었습니다. AI 난이도는 ${action.payload.aiDifficulty === "easy" ? "쉬움" : action.payload.aiDifficulty === "hard" ? "어려움" : "보통"}입니다.`,
         );
       }
 
@@ -456,7 +458,9 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         return initialGameState;
 
       case "RESTORE_GAME":
-        return action.payload.state.version === "1.0.0" ? action.payload.state : initialGameState;
+        return action.payload.state.version === "1.0.0"
+          ? { ...action.payload.state, aiDifficulty: action.payload.state.aiDifficulty ?? "normal" }
+          : initialGameState;
 
       default:
         return state;

@@ -20,7 +20,7 @@ export function useAiTurn(state: GameState, dispatch: Dispatch<GameAction>) {
 
     const delay = 600 + Math.floor(Math.random() * 401);
     const timer = window.setTimeout(() => {
-      const action = decideAiAction(player, state.currentTrick);
+      const action = decideAiAction(player, state.currentTrick, state.aiDifficulty);
       if (action.kind === "play") {
         dispatch({ type: "PLAY_CARDS", payload: { playerId: player.id, cardIds: action.cards.map((card) => card.id) } });
       } else {

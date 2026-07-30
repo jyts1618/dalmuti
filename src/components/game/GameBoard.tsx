@@ -10,6 +10,12 @@ import { TrickArea } from "@/components/game/TrickArea";
 import { ROLE_LABELS } from "@/game/roleAssignment";
 import type { GameAction, GameState } from "@/types/game";
 
+const AI_DIFFICULTY_LABELS = {
+  easy: "쉬움",
+  normal: "보통",
+  hard: "어려움",
+} as const;
+
 type GameBoardProps = {
   state: GameState;
   dispatch: Dispatch<GameAction>;
@@ -29,7 +35,7 @@ export function GameBoard({ state, dispatch, onShowRules, onNewGame }: GameBoard
           <div>
             <h1 className="text-2xl font-bold text-amber-100">달무티</h1>
             <p className="mt-1 text-sm text-emerald-100">
-              라운드 {state.roundNumber} · 내 계급 {human ? ROLE_LABELS[human.role] : "-"} · 현재 턴 {currentPlayer?.name ?? "-"}
+              라운드 {state.roundNumber} · 내 계급 {human ? ROLE_LABELS[human.role] : "-"} · AI {AI_DIFFICULTY_LABELS[state.aiDifficulty]} · 현재 턴 {currentPlayer?.name ?? "-"}
             </p>
           </div>
           <div className="flex gap-2">
