@@ -56,9 +56,14 @@ function StartScreen({
   const [aiDifficulty, setAiDifficulty] = useState<AiDifficulty>("normal");
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#153f35,#061714_70%)] px-4 py-8 text-emerald-50">
-      <section className="mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-[1360px] content-center gap-8 md:grid-cols-[1fr_420px] md:items-center">
-        <div>
+    <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,#153f35,#061714_70%)] px-4 py-8 text-emerald-50">
+      <div
+        className="floating-start-card"
+        aria-hidden="true"
+        style={{ backgroundImage: "linear-gradient(rgb(6 23 20 / 0.25), rgb(6 23 20 / 0.25)), url(cards/card-back.png)" }}
+      />
+      <section className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-[1360px] content-center gap-8 md:grid-cols-[1fr_420px] md:items-center">
+        <div className="relative">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-200">The Great Dalmuti</p>
           <h1 className="mt-3 text-5xl font-bold text-amber-50 md:text-7xl">달무티</h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-emerald-100">
