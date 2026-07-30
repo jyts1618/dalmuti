@@ -10,11 +10,11 @@ export function TrickArea({ state }: TrickAreaProps) {
   const lastPlayer = state.players.find((player) => player.id === state.lastPlayedById);
 
   return (
-    <section className="flex min-h-[292px] min-w-0 flex-col rounded-md border border-amber-200/30 bg-black/20 p-4 text-center md:min-h-[324px]">
+    <section className="flex min-h-[342px] min-w-0 flex-col rounded-md border border-amber-200/30 bg-black/20 p-4 text-center md:min-h-[324px]">
       <p className="text-xs uppercase tracking-[0.2em] text-amber-100">현재 트릭</p>
       {state.currentTrick ? (
         <>
-          <div className="mt-4 flex max-w-full justify-start gap-2 overflow-x-auto pb-2 md:justify-center">
+          <div className="mt-4 flex h-[122px] max-w-full items-start justify-start gap-2 overflow-x-auto pb-2 md:h-[134px] md:justify-center">
             {state.currentTrick.cards.map((card) => (
               <PlayingCard key={card.id} card={card} disabled />
             ))}
