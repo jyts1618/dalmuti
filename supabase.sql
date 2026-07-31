@@ -9,6 +9,9 @@ create table if not exists public.dalmuti_reviews (
 
 alter table public.dalmuti_reviews enable row level security;
 
+grant usage on schema public to anon;
+grant select, insert on public.dalmuti_reviews to anon;
+
 drop policy if exists "Anyone can read dalmuti reviews" on public.dalmuti_reviews;
 create policy "Anyone can read dalmuti reviews"
 on public.dalmuti_reviews

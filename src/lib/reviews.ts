@@ -18,6 +18,13 @@ const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export const isReviewBoardConfigured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
 
+function getSupabaseRestUrl() {
+  if (!SUPABASE_URL) throw new Error("후기 게시판 연결값이 필요합니다.");
+
+  const url = SUPABASE_URL.replace(/\/$/, "");
+  return url.endsWith("/rest/v1") ? url : `${url}/rest/v1`;
+}
+
 function getHeaders() {
   if (!SUPABASE_ANON_KEY) throw new Error("후기 게시판 연결값이 필요합니다.");
 
@@ -29,12 +36,11 @@ function getHeaders() {
 }
 
 function getEndpoint(path: string) {
-  if (!SUPABASE_URL) throw new Error("후기 게시판 연결값이 필요합니다.");
-  return `${SUPABASE_URL.replace(/\/$/, "")}${path}`;
+  return `${getSupabaseRestUrl()}${path}`;
 }
 
 export async function fetchReviews(): Promise<Review[]> {
-  const response = await fetch(getEndpoint("/rest/v1/dalmuti_reviews?select=id,nickname,content,rating,created_at&order=created_at.desc&limit=50"), {
+  const response = await fetch(getEndpoint("/dalmuti_reviews?select=id,nickname,content,rating,created_at&order=created_at.desc&limit=50"), {
     headers: getHeaders(),
   });
 
@@ -43,7 +49,7 @@ export async function fetchReviews(): Promise<Review[]> {
 }
 
 export async function createReview(input: ReviewInput) {
-  const response = await fetch(getEndpoint("/rest/v1/dalmuti_reviews"), {
+  const response = await fetch(getEndpoint("/dalmuti_reviews"), {
     method: "POST",
     headers: {
       ...getHeaders(),
@@ -61,7 +67,7 @@ export async function createReview(input: ReviewInput) {
 }
 
 export async function deleteReview(reviewId: string, deletePassword: string) {
-  const response = await fetch(getEndpoint("/rest/v1/rpc/delete_dalmuti_review"), {
+  const response = await fetch(getEndpoint("/rpc/delete_dalmuti_review"), {
     method: "POST",
     headers: getHeaders(),
     body: JSON.stringify({
