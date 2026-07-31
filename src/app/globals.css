@@ -45,8 +45,10 @@ input:focus-visible {
   width: clamp(176px, 27.2vw, 368px);
   aspect-ratio: 744 / 1038;
   opacity: 0.34;
+  perspective: 900px;
   pointer-events: none;
   transform: translate3d(-50%, -50%, 0);
+  transform-style: preserve-3d;
   z-index: 0;
 }
 
@@ -56,6 +58,7 @@ input:focus-visible {
   filter: drop-shadow(0 38px 70px rgb(0 0 0 / 0.38));
   transform-style: preserve-3d;
   animation: floating-card-spin 26s linear infinite;
+  will-change: transform;
 }
 
 .floating-start-card-face {
@@ -65,13 +68,21 @@ input:focus-visible {
   border: 1px solid rgb(251 191 36 / 0.18);
   border-radius: 8px;
   backface-visibility: hidden;
+  height: 100%;
   object-fit: cover;
   -webkit-backface-visibility: hidden;
   transform: rotateY(0deg) translateZ(1px);
   user-select: none;
+  width: 100%;
+  will-change: opacity, transform;
+}
+
+.floating-start-card-front {
+  animation: floating-card-front-visibility 26s linear infinite;
 }
 
 .floating-start-card-back {
+  animation: floating-card-back-visibility 26s linear infinite;
   transform: rotateY(180deg) translateZ(1px);
 }
 
@@ -89,8 +100,37 @@ input:focus-visible {
   }
 }
 
+@keyframes floating-card-front-visibility {
+  0%,
+  24%,
+  76%,
+  100% {
+    opacity: 1;
+  }
+
+  26%,
+  74% {
+    opacity: 0;
+  }
+}
+
+@keyframes floating-card-back-visibility {
+  0%,
+  24%,
+  76%,
+  100% {
+    opacity: 0;
+  }
+
+  26%,
+  74% {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .floating-start-card-inner {
+  .floating-start-card-inner,
+  .floating-start-card-face {
     animation: none;
   }
 }

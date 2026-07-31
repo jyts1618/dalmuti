@@ -66,7 +66,7 @@ function StartScreen({
           <img
             src="cards/rank-1.png"
             alt=""
-            className="floating-start-card-face"
+            className="floating-start-card-face floating-start-card-front"
             draggable={false}
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
