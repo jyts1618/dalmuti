@@ -62,13 +62,19 @@ function StartScreen({
     <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,#5b3a6d,#18242e_46%,#160f1d_78%)] px-4 py-8 text-[#fff8e5]">
       <div className="floating-start-card" aria-hidden="true">
         <div className="floating-start-card-inner">
-          <span
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="cards/rank-1.png"
+            alt=""
             className="floating-start-card-face"
-            style={{ backgroundImage: "linear-gradient(rgb(22 15 29 / 0.08), rgb(22 15 29 / 0.08)), url(cards/rank-1.png)" }}
+            draggable={false}
           />
-          <span
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="cards/card-back.png"
+            alt=""
             className="floating-start-card-face floating-start-card-back"
-            style={{ backgroundImage: "linear-gradient(rgb(22 15 29 / 0.18), rgb(22 15 29 / 0.18)), url(cards/card-back.png)" }}
+            draggable={false}
           />
         </div>
       </div>

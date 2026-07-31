@@ -42,7 +42,7 @@ input:focus-visible {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: clamp(220px, 34vw, 460px);
+  width: clamp(176px, 27.2vw, 368px);
   aspect-ratio: 744 / 1038;
   opacity: 0.34;
   pointer-events: none;
@@ -64,13 +64,15 @@ input:focus-visible {
   display: block;
   border: 1px solid rgb(251 191 36 / 0.18);
   border-radius: 8px;
-  background-position: center;
-  background-size: cover;
   backface-visibility: hidden;
+  object-fit: cover;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(0deg) translateZ(1px);
+  user-select: none;
 }
 
 .floating-start-card-back {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(1px);
 }
 
 @keyframes floating-card-spin {
