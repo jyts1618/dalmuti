@@ -40,54 +40,55 @@ input:focus-visible {
 
 .floating-start-card {
   position: absolute;
-  top: 6%;
-  right: clamp(1rem, 9vw, 8rem);
-  width: clamp(170px, 20vw, 320px);
+  top: 50%;
+  left: 50%;
+  width: clamp(220px, 34vw, 460px);
   aspect-ratio: 744 / 1038;
-  filter: drop-shadow(0 38px 70px rgb(0 0 0 / 0.38));
-  opacity: 0.28;
+  opacity: 0.34;
   pointer-events: none;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 0;
+}
+
+.floating-start-card-inner {
+  position: absolute;
+  inset: 0;
+  filter: drop-shadow(0 38px 70px rgb(0 0 0 / 0.38));
   transform-style: preserve-3d;
   animation: floating-card-spin 26s linear infinite;
 }
 
-.floating-start-card::before,
-.floating-start-card::after {
+.floating-start-card-face {
   position: absolute;
   inset: 0;
+  display: block;
   border: 1px solid rgb(251 191 36 / 0.18);
   border-radius: 8px;
   background-position: center;
   background-size: cover;
   backface-visibility: hidden;
-  content: "";
 }
 
-.floating-start-card::before {
-  background-image: linear-gradient(rgb(22 15 29 / 0.08), rgb(22 15 29 / 0.08)), var(--floating-card-front);
-}
-
-.floating-start-card::after {
-  background-image: linear-gradient(rgb(22 15 29 / 0.18), rgb(22 15 29 / 0.18)), var(--floating-card-back);
+.floating-start-card-back {
   transform: rotateY(180deg);
 }
 
 @keyframes floating-card-spin {
   0% {
-    transform: perspective(900px) translate3d(0, 0, 0) rotateX(7deg) rotateY(0deg) rotateZ(-14deg);
+    transform: perspective(900px) rotateX(7deg) rotateY(0deg) rotateZ(-14deg);
   }
 
   50% {
-    transform: perspective(900px) translate3d(-18px, 14px, 0) rotateX(7deg) rotateY(180deg) rotateZ(-14deg);
+    transform: perspective(900px) rotateX(7deg) rotateY(180deg) rotateZ(-14deg);
   }
 
   100% {
-    transform: perspective(900px) translate3d(0, 0, 0) rotateX(7deg) rotateY(360deg) rotateZ(-14deg);
+    transform: perspective(900px) rotateX(7deg) rotateY(360deg) rotateZ(-14deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .floating-start-card {
+  .floating-start-card-inner {
     animation: none;
   }
 }

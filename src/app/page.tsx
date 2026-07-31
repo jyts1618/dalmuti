@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import { useState } from "react";
 
 import { Modal } from "@/components/common/Modal";
 import { GameBoard } from "@/components/game/GameBoard";
@@ -60,16 +60,18 @@ function StartScreen({
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,#5b3a6d,#18242e_46%,#160f1d_78%)] px-4 py-8 text-[#fff8e5]">
-      <div
-        className="floating-start-card"
-        aria-hidden="true"
-        style={
-          {
-            "--floating-card-front": "url(cards/rank-1.png)",
-            "--floating-card-back": "url(cards/card-back.png)",
-          } as CSSProperties
-        }
-      />
+      <div className="floating-start-card" aria-hidden="true">
+        <div className="floating-start-card-inner">
+          <span
+            className="floating-start-card-face"
+            style={{ backgroundImage: "linear-gradient(rgb(22 15 29 / 0.08), rgb(22 15 29 / 0.08)), url(cards/rank-1.png)" }}
+          />
+          <span
+            className="floating-start-card-face floating-start-card-back"
+            style={{ backgroundImage: "linear-gradient(rgb(22 15 29 / 0.18), rgb(22 15 29 / 0.18)), url(cards/card-back.png)" }}
+          />
+        </div>
+      </div>
       <section className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-[1360px] content-center gap-8 md:grid-cols-[1fr_420px] md:items-center">
         <div className="relative">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-200">The Great Dalmuti</p>
