@@ -40,29 +40,49 @@ input:focus-visible {
 
 .floating-start-card {
   position: absolute;
-  top: 7%;
+  top: 6%;
   right: clamp(1rem, 9vw, 8rem);
-  width: clamp(150px, 18vw, 270px);
+  width: clamp(170px, 20vw, 320px);
   aspect-ratio: 744 / 1038;
+  filter: drop-shadow(0 38px 70px rgb(0 0 0 / 0.38));
+  opacity: 0.28;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  animation: floating-card-spin 26s linear infinite;
+}
+
+.floating-start-card::before,
+.floating-start-card::after {
+  position: absolute;
+  inset: 0;
   border: 1px solid rgb(251 191 36 / 0.18);
   border-radius: 8px;
   background-position: center;
   background-size: cover;
-  box-shadow: 0 36px 80px rgb(0 0 0 / 0.34);
-  opacity: 0.24;
-  pointer-events: none;
-  transform: rotate(-18deg);
-  animation: floating-card-drift 14s ease-in-out infinite;
+  backface-visibility: hidden;
+  content: "";
 }
 
-@keyframes floating-card-drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(-18deg);
+.floating-start-card::before {
+  background-image: linear-gradient(rgb(22 15 29 / 0.08), rgb(22 15 29 / 0.08)), var(--floating-card-front);
+}
+
+.floating-start-card::after {
+  background-image: linear-gradient(rgb(22 15 29 / 0.18), rgb(22 15 29 / 0.18)), var(--floating-card-back);
+  transform: rotateY(180deg);
+}
+
+@keyframes floating-card-spin {
+  0% {
+    transform: perspective(900px) translate3d(0, 0, 0) rotateX(7deg) rotateY(0deg) rotateZ(-14deg);
   }
 
   50% {
-    transform: translate3d(-18px, 16px, 0) rotate(-7deg);
+    transform: perspective(900px) translate3d(-18px, 14px, 0) rotateX(7deg) rotateY(180deg) rotateZ(-14deg);
+  }
+
+  100% {
+    transform: perspective(900px) translate3d(0, 0, 0) rotateX(7deg) rotateY(360deg) rotateZ(-14deg);
   }
 }
 

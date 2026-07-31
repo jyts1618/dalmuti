@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 import { Modal } from "@/components/common/Modal";
 import { GameBoard } from "@/components/game/GameBoard";
@@ -63,7 +63,12 @@ function StartScreen({
       <div
         className="floating-start-card"
         aria-hidden="true"
-        style={{ backgroundImage: "linear-gradient(rgb(22 15 29 / 0.22), rgb(22 15 29 / 0.22)), url(cards/card-back.png)" }}
+        style={
+          {
+            "--floating-card-front": "url(cards/rank-1.png)",
+            "--floating-card-back": "url(cards/card-back.png)",
+          } as CSSProperties
+        }
       />
       <section className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-[1360px] content-center gap-8 md:grid-cols-[1fr_420px] md:items-center">
         <div className="relative">
