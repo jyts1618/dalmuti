@@ -6,10 +6,11 @@ type ModalProps = {
   title: string;
   children: ReactNode;
   onClose: () => void;
+  actions?: ReactNode;
   widthClassName?: string;
 };
 
-export function Modal({ title, children, onClose, widthClassName = "max-w-xl" }: ModalProps) {
+export function Modal({ title, children, onClose, actions, widthClassName = "max-w-xl" }: ModalProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -54,14 +55,17 @@ export function Modal({ title, children, onClose, widthClassName = "max-w-xl" }:
           <h2 id="modal-title" className="text-xl font-semibold text-amber-200">
             {title}
           </h2>
-          <button
-            type="button"
-            aria-label="모달 닫기"
-            onClick={onClose}
-            className="rounded border border-amber-200/40 px-3 py-1 text-sm text-amber-100 hover:bg-amber-100 hover:text-[#1a1023]"
-          >
-            닫기
-          </button>
+          <div className="flex shrink-0 items-center gap-2">
+            {actions}
+            <button
+              type="button"
+              aria-label="모달 닫기"
+              onClick={onClose}
+              className="rounded border border-amber-200/40 px-3 py-1 text-sm text-amber-100 hover:bg-amber-100 hover:text-[#1a1023]"
+            >
+              닫기
+            </button>
+          </div>
         </div>
         <div className="mt-4 text-sm leading-6 text-[#fff8e5]">{children}</div>
       </div>

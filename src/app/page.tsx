@@ -260,6 +260,7 @@ export default function Home() {
   const savedGame = useSavedGameSnapshot();
   const [showRules, setShowRules] = useState(false);
   const [showReviews, setShowReviews] = useState(false);
+  const [reviewRefreshSignal, setReviewRefreshSignal] = useState(0);
 
   useAiTurn(state, dispatch);
 
@@ -301,8 +302,22 @@ export default function Home() {
       {content}
       {showRules ? <RulesModal onClose={() => setShowRules(false)} /> : null}
       {showReviews ? (
-        <Modal title="후기 게시판" onClose={() => setShowReviews(false)} widthClassName="max-w-5xl">
-          <ReviewBoard onClose={() => setShowReviews(false)} />
+        <Modal
+          title="후기 게시판"
+          onClose={() => setShowReviews(false)}
+          widthClassName="max-w-5xl"
+          actions={
+            <button
+              type="button"
+              aria-label="후기 새로고침"
+              onClick={() => setReviewRefreshSignal((current) => current + 1)}
+              className="rounded border border-amber-200/40 px-3 py-1 text-sm text-amber-100 hover:bg-amber-100 hover:text-[#1a1023]"
+            >
+              새로고침
+            </button>
+          }
+        >
+          <ReviewBoard onClose={() => setShowReviews(false)} refreshSignal={reviewRefreshSignal} />
         </Modal>
       ) : null}
     </>

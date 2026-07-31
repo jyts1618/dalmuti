@@ -8,9 +8,10 @@ const RATING_OPTIONS = [5, 4, 3, 2, 1];
 
 type ReviewBoardProps = {
   onClose: () => void;
+  refreshSignal: number;
 };
 
-export function ReviewBoard({ onClose }: ReviewBoardProps) {
+export function ReviewBoard({ onClose, refreshSignal }: ReviewBoardProps) {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
@@ -24,7 +25,7 @@ export function ReviewBoard({ onClose }: ReviewBoardProps) {
   useEffect(() => {
     if (!isReviewBoardConfigured) return;
     void loadReviews();
-  }, []);
+  }, [refreshSignal]);
 
   async function loadReviews(options: { clearMessage?: boolean } = { clearMessage: true }) {
     setIsLoading(true);
@@ -170,12 +171,6 @@ export function ReviewBoard({ onClose }: ReviewBoardProps) {
       </form>
 
       <section className="min-w-0">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <h3 className="text-lg font-semibold text-amber-100">친구들의 후기</h3>
-          <button type="button" onClick={() => loadReviews()} className="rounded border border-amber-200/40 px-3 py-1 text-sm text-amber-100">
-            새로고침
-          </button>
-        </div>
         {isLoading ? <p className="rounded border border-amber-200/30 bg-white/5 p-4 text-[#d9f5ef]">후기를 불러오는 중입니다.</p> : null}
         {!isLoading && reviews.length === 0 ? (
           <p className="rounded border border-amber-200/30 bg-white/5 p-4 text-[#d9f5ef]">아직 등록된 후기가 없습니다.</p>
