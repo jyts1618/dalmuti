@@ -1,3 +1,5 @@
+create extension if not exists pgcrypto;
+
 create table if not exists public.dalmuti_reviews (
   id uuid primary key default gen_random_uuid(),
   nickname text not null check (char_length(nickname) between 1 and 16),
@@ -8,6 +10,13 @@ create table if not exists public.dalmuti_reviews (
 );
 
 alter table public.dalmuti_reviews enable row level security;
+
+create table if not exists public.dalmuti_settings (
+  key text primary key,
+  value text not null
+);
+
+alter table public.dalmuti_settings enable row level security;
 
 grant usage on schema public to anon;
 grant select, insert on public.dalmuti_reviews to anon;
@@ -40,7 +49,15 @@ declare
 begin
   delete from public.dalmuti_reviews
   where id = review_id
-    and delete_password = review_password;
+    and (
+      delete_password = review_password
+      or exists (
+        select 1
+        from public.dalmuti_settings
+        where key = 'admin_delete_password_hash'
+          and value = crypt(review_password, value)
+      )
+    );
 
   get diagnostics deleted_count = row_count;
   return deleted_count > 0;

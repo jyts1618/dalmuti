@@ -66,7 +66,7 @@ export function ReviewBoard({ onClose, refreshSignal }: ReviewBoardProps) {
   async function removeReview(reviewId: string) {
     const password = deletePasswordById[reviewId]?.trim();
     if (!password) {
-      setMessage("삭제 비밀번호를 입력해주세요.");
+      setMessage("작성자 삭제 비밀번호 또는 관리자 비밀번호를 입력해주세요.");
       return;
     }
 
@@ -189,7 +189,7 @@ export function ReviewBoard({ onClose, refreshSignal }: ReviewBoardProps) {
                 <input
                   type="password"
                   aria-label={`${review.nickname} 후기 삭제 비밀번호`}
-                  placeholder="삭제 비밀번호"
+                  placeholder="삭제 또는 관리자 비밀번호"
                   value={deletePasswordById[review.id] ?? ""}
                   onChange={(event) => setDeletePasswordById((current) => ({ ...current, [review.id]: event.target.value }))}
                   className="min-w-0 rounded border border-amber-200/30 bg-[#1a1023] px-3 py-2 text-sm text-amber-50 outline-none focus:border-amber-200"

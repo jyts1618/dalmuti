@@ -58,6 +58,8 @@ https://jyts1618.github.io/dalmuti/
 
 후기 게시판은 Supabase에 저장됩니다. Supabase 프로젝트를 만든 뒤 `supabase.sql` 내용을 Supabase SQL Editor에서 실행합니다.
 
+관리자가 모든 후기를 삭제할 수 있게 하려면 `supabase-admin-delete.sql`의 `CHANGE_THIS_ADMIN_PASSWORD`를 원하는 관리자 비밀번호로 바꾼 뒤 Supabase SQL Editor에서 실행합니다. 이후 후기 삭제 입력칸에 작성자 삭제 비밀번호 또는 관리자 비밀번호를 입력하면 삭제할 수 있습니다.
+
 그 다음 `.env.local` 파일에 아래 값을 넣고 다시 빌드합니다.
 
 ```text

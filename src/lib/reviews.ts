@@ -78,5 +78,5 @@ export async function deleteReview(reviewId: string, deletePassword: string) {
 
   if (!response.ok) throw new Error("후기를 삭제하지 못했습니다.");
   const deleted = (await response.json()) as boolean;
-  if (!deleted) throw new Error("삭제 비밀번호가 맞지 않습니다.");
+  if (!deleted) throw new Error("작성자 삭제 비밀번호 또는 관리자 비밀번호가 맞지 않습니다.");
 }
