@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Modal } from "@/components/common/Modal";
 import { GameBoard } from "@/components/game/GameBoard";
 import { HumanHand } from "@/components/game/HumanHand";
+import { ReviewBoard } from "@/components/reviews/ReviewBoard";
 import { GameSummary } from "@/components/result/GameSummary";
 import { RoundResult } from "@/components/result/RoundResult";
 import { PlayerCountSelector } from "@/components/setup/PlayerCountSelector";
@@ -45,11 +46,13 @@ function StartScreen({
   onContinue,
   hasSavedGame,
   onShowRules,
+  onShowReviews,
 }: {
   onCreate: (playerCount: number, humanName: string, aiDifficulty: AiDifficulty) => void;
   onContinue: () => void;
   hasSavedGame: boolean;
   onShowRules: () => void;
+  onShowReviews: () => void;
 }) {
   const [playerCount, setPlayerCount] = useState(5);
   const [humanName, setHumanName] = useState("나");
@@ -89,6 +92,9 @@ function StartScreen({
             </button>
             <button type="button" aria-label="게임 방법 보기" onClick={onShowRules} className="rounded border border-white/20 px-5 py-3">
               게임 방법
+            </button>
+            <button type="button" aria-label="후기 게시판 보기" onClick={onShowReviews} className="rounded border border-white/20 px-5 py-3">
+              후기 게시판
             </button>
           </div>
         </div>
@@ -253,6 +259,7 @@ export default function Home() {
   const { state, dispatch } = useGame();
   const savedGame = useSavedGameSnapshot();
   const [showRules, setShowRules] = useState(false);
+  const [showReviews, setShowReviews] = useState(false);
 
   useAiTurn(state, dispatch);
 
@@ -274,6 +281,7 @@ export default function Home() {
         onCreate={startNewGame}
         onContinue={() => savedGame && dispatch({ type: "RESTORE_GAME", payload: { state: savedGame.gameState } })}
         onShowRules={() => setShowRules(true)}
+        onShowReviews={() => setShowReviews(true)}
       />
     );
   } else if (state.phase === "drawingRoles" || state.phase === "dealing") {
@@ -281,7 +289,7 @@ export default function Home() {
   } else if (state.phase === "taxation") {
     content = <TaxationScreen state={state} dispatch={dispatch} />;
   } else if (state.phase === "playing") {
-    content = <GameBoard state={state} dispatch={dispatch} onShowRules={() => setShowRules(true)} onNewGame={resetToStart} />;
+    content = <GameBoard state={state} dispatch={dispatch} onShowRules={() => setShowRules(true)} onShowReviews={() => setShowReviews(true)} onNewGame={resetToStart} />;
   } else if (state.phase === "roundResult") {
     content = <RoundResult state={state} dispatch={dispatch} onNewGame={resetToStart} />;
   } else {
@@ -292,6 +300,11 @@ export default function Home() {
     <>
       {content}
       {showRules ? <RulesModal onClose={() => setShowRules(false)} /> : null}
+      {showReviews ? (
+        <Modal title="후기 게시판" onClose={() => setShowReviews(false)} widthClassName="max-w-5xl">
+          <ReviewBoard onClose={() => setShowReviews(false)} />
+        </Modal>
+      ) : null}
     </>
   );
 }

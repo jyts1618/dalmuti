@@ -54,6 +54,19 @@ GitHub 저장소에서:
 https://jyts1618.github.io/dalmuti/
 ```
 
+## 후기 게시판 설정
+
+후기 게시판은 Supabase에 저장됩니다. Supabase 프로젝트를 만든 뒤 `supabase.sql` 내용을 Supabase SQL Editor에서 실행합니다.
+
+그 다음 `.env.local` 파일에 아래 값을 넣고 다시 빌드합니다.
+
+```text
+NEXT_PUBLIC_SUPABASE_URL=Supabase Project URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY=Supabase anon public key
+```
+
+GitHub Pages로 배포하려면 위 환경값이 들어간 상태에서 `npm run build`를 실행한 뒤 새로 생성된 `out` 내용을 `docs`에 반영해 커밋합니다.
+
 ## 테스트 방법
 
 ```bash

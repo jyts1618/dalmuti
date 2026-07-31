@@ -20,10 +20,11 @@ type GameBoardProps = {
   state: GameState;
   dispatch: Dispatch<GameAction>;
   onShowRules: () => void;
+  onShowReviews: () => void;
   onNewGame: () => void;
 };
 
-export function GameBoard({ state, dispatch, onShowRules, onNewGame }: GameBoardProps) {
+export function GameBoard({ state, dispatch, onShowRules, onShowReviews, onNewGame }: GameBoardProps) {
   const human = state.players.find((player) => player.type === "human");
   const currentPlayer = state.players.find((player) => player.id === state.currentPlayerId);
   const aiPlayers = state.players.filter((player) => player.type === "ai");
@@ -41,6 +42,9 @@ export function GameBoard({ state, dispatch, onShowRules, onNewGame }: GameBoard
           <div className="flex gap-2">
             <button type="button" aria-label="새 게임 시작" onClick={onNewGame} className="rounded border border-amber-200/40 px-3 py-2 text-sm">
               새 게임
+            </button>
+            <button type="button" aria-label="후기 게시판 보기" onClick={onShowReviews} className="rounded border border-amber-200/40 px-3 py-2 text-sm text-amber-100">
+              후기 게시판
             </button>
             <button type="button" aria-label="게임 규칙 보기" onClick={onShowRules} className="rounded bg-amber-300 px-3 py-2 text-sm font-semibold text-[#1a1023]">
               게임 규칙

@@ -6,9 +6,10 @@ type ModalProps = {
   title: string;
   children: ReactNode;
   onClose: () => void;
+  widthClassName?: string;
 };
 
-export function Modal({ title, children, onClose }: ModalProps) {
+export function Modal({ title, children, onClose, widthClassName = "max-w-xl" }: ModalProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export function Modal({ title, children, onClose }: ModalProps) {
         aria-modal="true"
         aria-labelledby="modal-title"
         tabIndex={-1}
-        className="w-full max-w-xl rounded-md border border-amber-300/40 bg-[#24172e] p-6 text-ivory shadow-2xl outline-none"
+        className={`w-full ${widthClassName} rounded-md border border-amber-300/40 bg-[#24172e] p-6 text-ivory shadow-2xl outline-none`}
       >
         <div className="flex items-start justify-between gap-4">
           <h2 id="modal-title" className="text-xl font-semibold text-amber-200">
