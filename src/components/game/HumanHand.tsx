@@ -24,7 +24,7 @@ export function HumanHand({ state, dispatch, selectionMode = "play" }: HumanHand
           type="button"
           aria-label="카드 정렬"
           onClick={() => dispatch({ type: "CLEAR_SELECTION" })}
-          className="rounded border border-white/20 px-3 py-1 text-sm text-emerald-50"
+          className="rounded border border-white/20 px-3 py-1 text-sm text-[#fff8e5]"
         >
           카드 정렬
         </button>

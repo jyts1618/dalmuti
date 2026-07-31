@@ -29,12 +29,12 @@ export function GameBoard({ state, dispatch, onShowRules, onNewGame }: GameBoard
   const aiPlayers = state.players.filter((player) => player.type === "ai");
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#164238,#061714_72%)] px-4 py-5 text-emerald-50">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#0f4d52,#2a1734_48%,#160f1d_78%)] px-4 py-5 text-[#fff8e5]">
       <div className="mx-auto w-full max-w-[1360px]">
         <header className="flex flex-col gap-3 border-b border-amber-200/20 pb-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-2xl font-bold text-amber-100">달무티</h1>
-            <p className="mt-1 text-sm text-emerald-100">
+            <p className="mt-1 text-sm text-[#d9f5ef]">
               라운드 {state.roundNumber} · 내 계급 {human ? ROLE_LABELS[human.role] : "-"} · AI {AI_DIFFICULTY_LABELS[state.aiDifficulty]} · 현재 턴 {currentPlayer?.name ?? "-"}
             </p>
           </div>
@@ -42,7 +42,7 @@ export function GameBoard({ state, dispatch, onShowRules, onNewGame }: GameBoard
             <button type="button" aria-label="새 게임 시작" onClick={onNewGame} className="rounded border border-amber-200/40 px-3 py-2 text-sm">
               새 게임
             </button>
-            <button type="button" aria-label="게임 규칙 보기" onClick={onShowRules} className="rounded bg-amber-300 px-3 py-2 text-sm font-semibold text-emerald-950">
+            <button type="button" aria-label="게임 규칙 보기" onClick={onShowRules} className="rounded bg-amber-300 px-3 py-2 text-sm font-semibold text-[#1a1023]">
               게임 규칙
             </button>
           </div>

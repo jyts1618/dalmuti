@@ -10,7 +10,7 @@ export function PlayerCountSelector({ value, onChange }: PlayerCountSelectorProp
 
   return (
     <div className="space-y-3">
-      <label htmlFor="player-count" className="block text-sm text-emerald-50">
+      <label htmlFor="player-count" className="block text-sm text-[#fff8e5]">
         현재 참여 인원
       </label>
       <div className="grid w-full grid-cols-[52px_minmax(0,1fr)_52px] items-center gap-3 sm:grid-cols-[56px_minmax(0,1fr)_56px] sm:gap-4">
@@ -31,7 +31,7 @@ export function PlayerCountSelector({ value, onChange }: PlayerCountSelectorProp
           max={8}
           value={value}
           onChange={(event) => setClamped(Number(event.target.value))}
-          className="h-12 min-w-0 rounded border border-amber-200/40 bg-emerald-950 px-3 text-center text-2xl font-semibold text-amber-100 outline-none focus:border-amber-200 sm:h-14"
+          className="h-12 min-w-0 rounded border border-amber-200/40 bg-[#1a1023] px-3 text-center text-2xl font-semibold text-amber-100 outline-none focus:border-amber-200 sm:h-14"
         />
         <button
           type="button"
@@ -43,8 +43,8 @@ export function PlayerCountSelector({ value, onChange }: PlayerCountSelectorProp
           +
         </button>
       </div>
-      <p className="text-sm text-emerald-50">총 {value}명이 참여합니다.</p>
-      <p className="text-sm text-emerald-100">사용자 1명과 AI 플레이어 {value - 1}명으로 게임을 시작합니다.</p>
+      <p className="text-sm text-[#fff8e5]">총 {value}명이 참여합니다.</p>
+      <p className="text-sm text-[#d9f5ef]">사용자 1명과 AI 플레이어 {value - 1}명으로 게임을 시작합니다.</p>
     </div>
   );
 }

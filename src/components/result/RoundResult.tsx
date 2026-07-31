@@ -16,13 +16,13 @@ export function RoundResult({ state, dispatch, onNewGame }: RoundResultProps) {
   const user = state.players.find((player) => player.type === "human");
 
   return (
-    <main className="min-h-screen bg-[#071d19] px-4 py-8 text-emerald-50">
+    <main className="min-h-screen bg-[#1c1423] px-4 py-8 text-[#fff8e5]">
       <section className="mx-auto w-full max-w-[1360px]">
         <p className="text-sm text-amber-100">라운드 {state.roundNumber} 결과</p>
         <h1 className="mt-2 text-3xl font-bold text-amber-50">순위가 결정되었습니다</h1>
         <div className="mt-6 overflow-hidden rounded-md border border-amber-200/30">
           <table className="w-full border-collapse text-left text-sm">
-            <thead className="bg-amber-200 text-emerald-950">
+            <thead className="bg-amber-200 text-[#1a1023]">
               <tr>
                 <th className="p-3">순위</th>
                 <th className="p-3">플레이어</th>
@@ -37,7 +37,7 @@ export function RoundResult({ state, dispatch, onNewGame }: RoundResultProps) {
                 if (!player) return null;
                 const isUser = player.id === user?.id;
                 return (
-                  <tr key={playerId} className={isUser ? "bg-teal-400/15" : "bg-white/5"}>
+                  <tr key={playerId} className={isUser ? "bg-[#43d6ca]/15" : "bg-white/5"}>
                     <td className="p-3 font-semibold text-amber-100">{index + 1}위</td>
                     <td className="p-3">{player.name} · {player.type === "human" ? "사용자" : "AI"}</td>
                     <td className="p-3">{ROLE_LABELS[player.role]}</td>
@@ -54,7 +54,7 @@ export function RoundResult({ state, dispatch, onNewGame }: RoundResultProps) {
             type="button"
             aria-label="다음 라운드 진행"
             onClick={() => dispatch({ type: "PREPARE_NEXT_ROUND" })}
-            className="rounded bg-amber-300 px-4 py-2 font-semibold text-emerald-950"
+            className="rounded bg-amber-300 px-4 py-2 font-semibold text-[#1a1023]"
           >
             다음 라운드 진행
           </button>

@@ -19,28 +19,28 @@ export function TrickArea({ state }: TrickAreaProps) {
               <PlayingCard key={card.id} card={card} disabled />
             ))}
           </div>
-          <dl className="mt-4 grid grid-cols-2 gap-3 text-sm text-emerald-50 sm:grid-cols-4">
+          <dl className="mt-4 grid grid-cols-2 gap-3 text-sm text-[#fff8e5] sm:grid-cols-4">
             <div>
-              <dt className="text-emerald-200">제출 숫자</dt>
+              <dt className="text-[#8ee4da]">제출 숫자</dt>
               <dd className="font-semibold text-amber-100">{state.currentTrick.rank}</dd>
             </div>
             <div>
-              <dt className="text-emerald-200">제출 장수</dt>
+              <dt className="text-[#8ee4da]">제출 장수</dt>
               <dd className="font-semibold text-amber-100">{state.currentTrick.count}</dd>
             </div>
             <div>
-              <dt className="text-emerald-200">마지막 제출</dt>
+              <dt className="text-[#8ee4da]">마지막 제출</dt>
               <dd className="font-semibold text-amber-100">{lastPlayer?.name ?? "-"}</dd>
             </div>
             <div>
-              <dt className="text-emerald-200">연속 패스</dt>
+              <dt className="text-[#8ee4da]">연속 패스</dt>
               <dd className="font-semibold text-amber-100">{state.consecutivePassCount}</dd>
             </div>
           </dl>
-          {lastPlayer ? <p className="mt-3 text-xs text-emerald-200">{ROLE_LABELS[lastPlayer.role]}의 플레이입니다.</p> : null}
+          {lastPlayer ? <p className="mt-3 text-xs text-[#8ee4da]">{ROLE_LABELS[lastPlayer.role]}의 플레이입니다.</p> : null}
         </>
       ) : (
-        <div className="mt-4 flex flex-1 items-center justify-center rounded border border-dashed border-amber-200/30 px-4 py-10 text-emerald-100">
+        <div className="mt-4 flex flex-1 items-center justify-center rounded border border-dashed border-amber-200/30 px-4 py-10 text-[#d9f5ef]">
           새 트릭입니다. 현재 플레이어가 원하는 같은 숫자 세트를 낼 수 있습니다.
         </div>
       )}

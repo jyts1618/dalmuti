@@ -11,7 +11,7 @@ type GameSummaryProps = {
 
 export function GameSummary({ state, dispatch }: GameSummaryProps) {
   return (
-    <main className="min-h-screen bg-[#071d19] px-4 py-10 text-emerald-50">
+    <main className="min-h-screen bg-[#1c1423] px-4 py-10 text-[#fff8e5]">
       <section className="mx-auto w-full max-w-[1360px]">
         <div className="max-w-2xl rounded-md border border-amber-200/30 bg-white/5 p-6">
           <p className="text-sm text-amber-100">게임 요약</p>
@@ -27,7 +27,7 @@ export function GameSummary({ state, dispatch }: GameSummaryProps) {
             type="button"
             aria-label="시작 화면으로 돌아가기"
             onClick={() => dispatch({ type: "RESET_GAME" })}
-            className="mt-6 rounded bg-amber-300 px-4 py-2 font-semibold text-emerald-950"
+            className="mt-6 rounded bg-amber-300 px-4 py-2 font-semibold text-[#1a1023]"
           >
             시작 화면으로
           </button>

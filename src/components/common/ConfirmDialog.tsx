@@ -27,7 +27,7 @@ export function ConfirmDialog({
           type="button"
           aria-label={cancelLabel}
           onClick={onCancel}
-          className="rounded border border-emerald-100/30 px-4 py-2 text-sm text-emerald-50 hover:bg-white/10"
+          className="rounded border border-[#8ee4da]/30 px-4 py-2 text-sm text-[#fff8e5] hover:bg-white/10"
         >
           {cancelLabel}
         </button>
@@ -35,7 +35,7 @@ export function ConfirmDialog({
           type="button"
           aria-label={confirmLabel}
           onClick={onConfirm}
-          className="rounded bg-amber-300 px-4 py-2 text-sm font-semibold text-emerald-950 hover:bg-amber-200"
+          className="rounded bg-amber-300 px-4 py-2 text-sm font-semibold text-[#1a1023] hover:bg-amber-200"
         >
           {confirmLabel}
         </button>

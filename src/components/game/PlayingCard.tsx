@@ -20,7 +20,7 @@ export function PlayingCard({ card, selected = false, disabled = false, hidden =
 
   if (hidden) {
     return (
-      <div className="card-size relative shrink-0 overflow-hidden rounded-md border border-amber-200/30 bg-emerald-950 shadow">
+      <div className="card-size relative shrink-0 overflow-hidden rounded-md border border-amber-200/30 bg-[#1a1023] shadow">
         <span
           aria-label="카드 뒷면"
           role="img"
@@ -38,16 +38,16 @@ export function PlayingCard({ card, selected = false, disabled = false, hidden =
       aria-pressed={selected}
       disabled={disabled}
       onClick={() => onToggle?.(card.id)}
-      className={`card-size relative shrink-0 overflow-hidden rounded-md border bg-[#fff8e5] text-left text-emerald-950 shadow transition ${
-        selected ? "-translate-y-3 border-teal-500 ring-2 ring-teal-300" : "border-amber-300"
+      className={`card-size relative shrink-0 overflow-hidden rounded-md border bg-[#fff8e5] text-left text-[#1a1023] shadow transition ${
+        selected ? "-translate-y-3 border-[#43d6ca] ring-2 ring-[#8ee4da]" : "border-amber-300"
       } ${disabled ? "cursor-not-allowed opacity-70" : "hover:-translate-y-2"}`}
     >
       <span aria-hidden="true" className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${imageSrc})` }} />
-      <span className="absolute left-2 top-2 min-w-6 rounded bg-[#fff8e5]/95 px-1.5 py-0.5 text-center text-sm font-black leading-none text-emerald-950 shadow ring-1 ring-amber-300/70">
+      <span className="absolute left-2 top-2 min-w-6 rounded bg-[#fff8e5]/95 px-1.5 py-0.5 text-center text-sm font-black leading-none text-[#1a1023] shadow ring-1 ring-amber-300/70">
         {visibleRank}
       </span>
       {selected ? (
-        <span className="absolute right-2 top-2 rounded-full bg-teal-600 px-1.5 py-0.5 text-[10px] font-semibold text-white shadow">
+        <span className="absolute right-2 top-2 rounded-full bg-[#168b8f] px-1.5 py-0.5 text-[10px] font-semibold text-white shadow">
           선택
         </span>
       ) : null}

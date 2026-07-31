@@ -8,7 +8,7 @@ type AiPlayerPanelProps = {
 
 function MiniCardBack() {
   return (
-    <span aria-hidden="true" className="relative block h-7 w-5 overflow-hidden rounded-[3px] border border-amber-200/40 bg-emerald-950 shadow-sm">
+    <span aria-hidden="true" className="relative block h-7 w-5 overflow-hidden rounded-[3px] border border-amber-200/40 bg-[#1a1023] shadow-sm">
       <span className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(cards/card-back.png)" }} />
     </span>
   );
@@ -23,8 +23,8 @@ export function AiPlayerPanel({ player, isTurn }: AiPlayerPanelProps) {
       aria-label={`${player.name} ${ROLE_LABELS[player.role]} 남은 카드 ${player.hand.length}장`}
     >
       <div className="flex items-center justify-between gap-2">
-        <h3 className="font-semibold text-emerald-50">{player.name}</h3>
-        <span className="rounded bg-emerald-950/70 px-2 py-1 text-xs text-amber-100">{ROLE_LABELS[player.role]}</span>
+        <h3 className="font-semibold text-[#fff8e5]">{player.name}</h3>
+        <span className="rounded bg-[#1a1023]/70 px-2 py-1 text-xs text-amber-100">{ROLE_LABELS[player.role]}</span>
       </div>
       <div className="mt-3" aria-label={`남은 카드 ${player.hand.length}장`}>
         {player.hand.length > 0 ? (
@@ -34,11 +34,11 @@ export function AiPlayerPanel({ player, isTurn }: AiPlayerPanelProps) {
             ))}
           </div>
         ) : (
-          <p className="text-sm text-green-300">남은 카드 없음</p>
+          <p className="text-sm text-[#8ee4da]">남은 카드 없음</p>
         )}
-        <p className="mt-2 text-xs text-emerald-100">남은 카드 {player.hand.length}장</p>
+        <p className="mt-2 text-xs text-[#d9f5ef]">남은 카드 {player.hand.length}장</p>
       </div>
-      <p className={`mt-1 text-xs ${player.isFinished ? "text-green-300" : player.hasPassedLastTurn ? "text-slate-300" : "text-emerald-200"}`}>
+      <p className={`mt-1 text-xs ${player.isFinished ? "text-[#8ee4da]" : player.hasPassedLastTurn ? "text-slate-300" : "text-[#8ee4da]"}`}>
         {player.isFinished ? "라운드 완료" : player.hasPassedLastTurn ? "직전 행동 패스" : isTurn ? "현재 턴" : "대기"}
       </p>
     </article>

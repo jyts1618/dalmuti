@@ -47,7 +47,7 @@ export function Modal({ title, children, onClose }: ModalProps) {
         aria-modal="true"
         aria-labelledby="modal-title"
         tabIndex={-1}
-        className="w-full max-w-xl rounded-md border border-amber-300/40 bg-[#102b24] p-6 text-ivory shadow-2xl outline-none"
+        className="w-full max-w-xl rounded-md border border-amber-300/40 bg-[#24172e] p-6 text-ivory shadow-2xl outline-none"
       >
         <div className="flex items-start justify-between gap-4">
           <h2 id="modal-title" className="text-xl font-semibold text-amber-200">
@@ -57,12 +57,12 @@ export function Modal({ title, children, onClose }: ModalProps) {
             type="button"
             aria-label="모달 닫기"
             onClick={onClose}
-            className="rounded border border-amber-200/40 px-3 py-1 text-sm text-amber-100 hover:bg-amber-100 hover:text-emerald-950"
+            className="rounded border border-amber-200/40 px-3 py-1 text-sm text-amber-100 hover:bg-amber-100 hover:text-[#1a1023]"
           >
             닫기
           </button>
         </div>
-        <div className="mt-4 text-sm leading-6 text-emerald-50">{children}</div>
+        <div className="mt-4 text-sm leading-6 text-[#fff8e5]">{children}</div>
       </div>
     </div>
   );
