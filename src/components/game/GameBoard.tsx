@@ -29,7 +29,7 @@ export function GameBoard({ state, dispatch, onShowRules, onNewGame }: GameBoard
   const aiPlayers = state.players.filter((player) => player.type === "ai");
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#0f4d52,#2a1734_48%,#160f1d_78%)] px-4 py-5 text-[#fff8e5]">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#0f4d52,#2a1734_48%,#160f1d_78%)] px-4 pb-36 pt-5 text-[#fff8e5] md:pb-32">
       <div className="mx-auto w-full max-w-[1360px]">
         <header className="flex flex-col gap-3 border-b border-amber-200/20 pb-4 md:flex-row md:items-center md:justify-between">
           <div>

@@ -17,8 +17,8 @@ export function GameActions({ state, dispatch }: GameActionsProps) {
     : { valid: false, reason: state.phase === "playing" ? "현재 사용자의 턴이 아닙니다." : "플레이 단계가 아닙니다." };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-amber-200/20 bg-[#1c1423]/95 px-4 py-3 backdrop-blur md:static md:rounded-md md:border">
-      <div className="mx-auto flex w-full max-w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-amber-200/20 bg-[#1c1423]/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur">
+      <div className="mx-auto flex w-full max-w-[1360px] min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="min-w-0 text-sm text-[#fff8e5]">
           선택 카드 {selectedCards.length}장: <span className={validation.valid ? "text-[#8ee4da]" : "text-amber-200"}>{validation.reason}</span>
         </p>
