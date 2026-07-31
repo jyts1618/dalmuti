@@ -1,4 +1,4 @@
-create extension if not exists pgcrypto;
+create extension if not exists pgcrypto with schema extensions;
 
 create table if not exists public.dalmuti_reviews (
   id uuid primary key default gen_random_uuid(),
@@ -55,7 +55,7 @@ begin
         select 1
         from public.dalmuti_settings
         where key = 'admin_delete_password_hash'
-          and value = crypt(review_password, value)
+          and value = extensions.crypt(review_password, value)
       )
     );
 

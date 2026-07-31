@@ -7,7 +7,7 @@ begin
   end if;
 
   insert into public.dalmuti_settings (key, value)
-  values ('admin_delete_password_hash', crypt(admin_password, gen_salt('bf')))
+  values ('admin_delete_password_hash', extensions.crypt(admin_password, extensions.gen_salt('bf')))
   on conflict (key)
   do update set value = excluded.value;
 end;
